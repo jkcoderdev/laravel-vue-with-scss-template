@@ -36,7 +36,7 @@ const proxyChecked = computed({
 <style lang="scss" scoped>
 input[type='checkbox'] {
     border-radius: 0.25rem;
-    border-color: #d1d5db;
+    border: 1px solid #d1d5db;
     color: #4f46e5;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
