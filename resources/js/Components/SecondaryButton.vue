@@ -41,5 +41,24 @@ button {
 
     text-transform: uppercase;
     letter-spacing: 0.1em;
+
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    @include transition;
+
+    &:hover {
+        background-color: #f9fafb;
+    }
+
+    &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 4px #6366f1, 0 0 0 2px #ffffff;
+    }
+
+    &:disabled {
+        opacity: 0.25;
+    }
 }
 </style>
