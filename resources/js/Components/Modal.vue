@@ -121,3 +121,7 @@ const maxWidthClass = computed(() => {
         </div>
     </dialog>
 </template>
+
+<style lang="scss" scoped>
+// Styles go here
+</style>
