@@ -52,7 +52,7 @@ const submit = () => {
                 <InputError class="error" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <InputLabel for="password" value="Password" />
 
                 <TextInput
@@ -67,7 +67,7 @@ const submit = () => {
                 <InputError class="error" :message="form.errors.password" />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <InputLabel
                     for="password_confirmation"
                     value="Confirm Password"
@@ -88,7 +88,7 @@ const submit = () => {
                 />
             </div>
 
-            <div class="mt-4 flex items-center justify-end">
+            <div>
                 <PrimaryButton
                     :class="{ 'disabled': form.processing }"
                     :disabled="form.processing"
