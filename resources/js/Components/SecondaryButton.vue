@@ -17,5 +17,29 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
+@mixin transition {
+    transition-property: color, background-color, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+}
 
+button {
+    padding: 0.5rem 1rem;
+    
+    display: inline-flex;
+    align-items: center;
+    
+    border-radius: 0.375rem;
+    
+    border: 1px solid #d1d5db;
+    background-color: #ffffff;
+    color: #374151;
+
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
 </style>
