@@ -1,0 +1,60 @@
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Figtree', sans-serif;
+}
+
+html,
+:host {
+    // Use a consistent sensible line-height in all browsers.
+    line-height: 1.5;
+
+    // Prevent adjustments of font size after orientation changes in iOS.
+    -webkit-text-size-adjust: 100%;
+    
+    // Use a more readable tab size.
+    -moz-tab-size: 4;
+    tab-size: 4;
+
+    // Disable tap highlights on iOS
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+// Correct the inability to style clickable types in iOS and Safari.
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+    -webkit-appearance: button;
+    appearance: button;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+// Set the default cursor for buttons.
+button,
+[role="button"] {
+  cursor: pointer;
+}
