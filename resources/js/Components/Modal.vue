@@ -93,11 +93,11 @@ const maxWidthClass = computed(() => {
             >
                 <div
                     v-show="show"
-                    class="fixed inset-0 transform transition-all animation"
+                    class="animation"
                     @click="close"
                 >
                     <div
-                        class="absolute inset-0 bg-gray-500 opacity-75"
+                        class="background"
                     />
                 </div>
             </Transition>
@@ -123,6 +123,7 @@ const maxWidthClass = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+
     .dialog{
         margin: 0;
         min-height: 100%;
@@ -134,6 +135,18 @@ const maxWidthClass = computed(() => {
         background-color: transparent;
         &::backdrop{
             background-color: transparent;
+        }
+
+        .animation{
+            position: fixed;
+            inset: 0;
+            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .background{
+            position: absolute;
+            inset: rgb(107 114 128);
+            opacity: 75%;
         }
 
         .content{
@@ -158,19 +171,13 @@ const maxWidthClass = computed(() => {
 
                 transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
+                box-shadow: 0 20px 25px -5px rgb(0, 0, 0, 0.1), 0 8px 10px -6px rgb(0, 0, 0, 0.1);
+
                 @media (min-width: 640px) {
                     margin-left: auto;
                     margin-right: auto;
                     width: 100%;
                 }
-
-                // These one are very tailwind heavy...
-
-                transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-
-                --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-                --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
-                box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
             }
 
         }
