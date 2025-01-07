@@ -8,7 +8,7 @@ const props = defineProps({
     },
     maxWidth: {
         type: String,
-        default: '2xl',
+        default: 'xxl',
     },
     closeable: {
         type: Boolean,
@@ -65,22 +65,22 @@ onUnmounted(() => {
 
 const maxWidthClass = computed(() => {
     return {
-        sm: 'sm:max-w-sm',
-        md: 'sm:max-w-md',
-        lg: 'sm:max-w-lg',
-        xl: 'sm:max-w-xl',
-        '2xl': 'sm:max-w-2xl',
+        sm: 'sm',
+        md: 'md',
+        lg: 'lg',
+        xl: 'xl',
+        'xxl': '2xl',
     }[props.maxWidth];
 });
 </script>
 
 <template>
     <dialog
-        class="z-50 m-0 min-h-full min-w-full overflow-y-auto bg-transparent backdrop:bg-transparent"
+        class="dialog"
         ref="dialog"
     >
         <div
-            class="fixed inset-0 z-50 overflow-y-auto px-4 py-6 sm:px-0"
+            class="content"
             scroll-region
         >
             <Transition
@@ -93,7 +93,7 @@ const maxWidthClass = computed(() => {
             >
                 <div
                     v-show="show"
-                    class="fixed inset-0 transform transition-all"
+                    class="fixed inset-0 transform transition-all animation"
                     @click="close"
                 >
                     <div
@@ -112,7 +112,7 @@ const maxWidthClass = computed(() => {
             >
                 <div
                     v-show="show"
-                    class="mb-6 transform overflow-hidden rounded-lg bg-white shadow-xl transition-all sm:mx-auto sm:w-full"
+                    class="message"
                     :class="maxWidthClass"
                 >
                     <slot v-if="showSlot" />
@@ -123,5 +123,82 @@ const maxWidthClass = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-// Styles go here
+    .dialog{
+        margin: 0;
+        min-height: 100%;
+        min-width: 100%;
+
+        z-index: 50;
+        overflow-y: auto;
+
+        background-color: transparent;
+        &::backdrop{
+            background-color: transparent;
+        }
+
+        .content{
+            position: fixed;
+
+            inset: 0;
+            z-index: 50;
+            overflow-y: auto;
+            padding: 1.5rem 1rem;
+
+            @media (min-width: 640px) {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .message{
+                margin-bottom: 1.5rem;
+                overflow: hidden;
+
+                border: 0.5rem;
+                background-color: white;
+
+                transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+                @media (min-width: 640px) {
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 100%;
+                }
+
+                // These one are very tailwind heavy...
+
+                transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+
+                --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+                --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+                box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            }
+
+        }
+    }
+
+    @media (min-width: 640px) {
+
+        .sm {
+            max-width: 24rem;
+        }
+
+        .md{
+            max-width: 28rem;
+        }
+    
+        .lg{
+            max-width: 32rem;
+        }
+    
+        .xl{
+            max-width: 36rem;
+        }
+    
+        .xxl{
+            max-width: 42rem;
+        }
+
+    }
+
+    
 </style>
