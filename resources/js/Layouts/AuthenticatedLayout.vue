@@ -127,7 +127,7 @@ const showingNavigationDropdown = ref(false);
                 }"
                 class="menu-responsive"
             >
-                <div class="links-container space-y-1 pb-3 pt-2">
+                <div class="links-container">
                     <ResponsiveNavLink
                         :href="route('dashboard')"
                         :active="route().current('dashboard')"
@@ -138,20 +138,20 @@ const showingNavigationDropdown = ref(false);
 
                 <!-- Responsive Settings Options -->
                 <div
-                    class="settings-container border-t border-gray-200 pb-1 pt-4"
+                    class="settings-container"
                 >
-                    <div class="settings-user px-4">
+                    <div class="settings-user">
                         <div
-                            class="username text-base font-medium text-gray-800"
+                            class="username"
                         >
                             {{ $page.props.auth.user.name }}
                         </div>
-                        <div class="email text-sm font-medium text-gray-500">
+                        <div class="email">
                             {{ $page.props.auth.user.email }}
                         </div>
                     </div>
 
-                    <div class="settings-content mt-3 space-y-1">
+                    <div class="settings-content">
                         <ResponsiveNavLink :href="route('profile.edit')">
                             Profile
                         </ResponsiveNavLink>
