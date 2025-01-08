@@ -76,12 +76,12 @@ const maxWidthClass = computed(() => props.maxWidth);
             scroll-region
         >
             <Transition
-                enter-active-class="transition-animation-enter-active ease-out duration-300"
-                enter-from-class="transition-animation-enter-from opacity-0"
-                enter-to-class="transition-animation-enter-to opacity-100"
-                leave-active-class="transition-animation-leave-active ease-in duration-200"
-                leave-from-class="transition-animation-leave-from opacity-100"
-                leave-to-class="transition-animation-leave-to opacity-0"
+                enter-active-class="transition-animation-enter-active"
+                enter-from-class="transition-animation-enter-from"
+                enter-to-class="transition-animation-enter-to"
+                leave-active-class="transition-animation-leave-active"
+                leave-from-class="transition-animation-leave-from"
+                leave-to-class="transition-animation-leave-to"
             >
                 <div
                     v-show="show"
@@ -93,12 +93,12 @@ const maxWidthClass = computed(() => props.maxWidth);
             </Transition>
 
             <Transition
-                enter-active-class="transition-modal-enter-active ease-out duration-300"
-                enter-from-class="transition-modal-enter-from opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                enter-to-class="transition-modal-enter-to opacity-100 translate-y-0 sm:scale-100"
-                leave-active-class="transition-modal-leave-active ease-in duration-200"
-                leave-from-class="transition-modal-leave-from opacity-100 translate-y-0 sm:scale-100"
-                leave-to-class="transition-modal-leave-to opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enter-active-class="transition-modal-enter-active"
+                enter-from-class="transition-modal-enter-from"
+                enter-to-class="transition-modal-enter-to"
+                leave-active-class="transition-modal-leave-active"
+                leave-from-class="transition-modal-leave-from"
+                leave-to-class="transition-modal-leave-to"
             >
                 <div
                     v-show="show"
