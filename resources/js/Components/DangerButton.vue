@@ -42,8 +42,6 @@ button {
         outline: 2px solid transparent;
         outline-offset: 2px;
 
-        background-color: #374151;
-
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #ef4444;
     }
 
