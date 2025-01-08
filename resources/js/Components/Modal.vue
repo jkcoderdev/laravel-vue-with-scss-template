@@ -175,23 +175,23 @@ const maxWidthClass = computed(() => props.maxWidth);
                 margin-right: auto;
                 width: 100%;
 
-                .sm {
+                &.sm {
                     max-width: 24rem;
                 }
 
-                .md {
+                &.md {
                     max-width: 28rem;
                 }
 
-                .lg {
+                &.lg {
                     max-width: 32rem;
                 }
 
-                .xl {
+                &.xl {
                     max-width: 36rem;
                 }
 
-                .xxl {
+                &.xxl {
                     max-width: 42rem;
                 }
             }
