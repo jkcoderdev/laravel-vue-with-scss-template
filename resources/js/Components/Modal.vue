@@ -63,15 +63,7 @@ onUnmounted(() => {
     document.body.style.overflow = '';
 });
 
-const maxWidthClass = computed(() => {
-    return {
-        sm: 'sm',
-        md: 'md',
-        lg: 'lg',
-        xl: 'xl',
-        'xxl': '2xl',
-    }[props.maxWidth];
-});
+const maxWidthClass = computed(() => props.maxWidth);
 </script>
 
 <template>
@@ -84,31 +76,29 @@ const maxWidthClass = computed(() => {
             scroll-region
         >
             <Transition
-                enter-active-class="ease-out duration-300"
-                enter-from-class="opacity-0"
-                enter-to-class="opacity-100"
-                leave-active-class="ease-in duration-200"
-                leave-from-class="opacity-100"
-                leave-to-class="opacity-0"
+                enter-active-class="transition-animation-enter-active ease-out duration-300"
+                enter-from-class="transition-animation-enter-from opacity-0"
+                enter-to-class="transition-animation-enter-to opacity-100"
+                leave-active-class="transition-animation-leave-active ease-in duration-200"
+                leave-from-class="transition-animation-leave-from opacity-100"
+                leave-to-class="transition-animation-leave-to opacity-0"
             >
                 <div
                     v-show="show"
                     class="animation"
                     @click="close"
                 >
-                    <div
-                        class="background"
-                    />
+                    <div class="background"></div>
                 </div>
             </Transition>
 
             <Transition
-                enter-active-class="ease-out duration-300"
-                enter-from-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                enter-to-class="opacity-100 translate-y-0 sm:scale-100"
-                leave-active-class="ease-in duration-200"
-                leave-from-class="opacity-100 translate-y-0 sm:scale-100"
-                leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enter-active-class="transition-modal-enter-active ease-out duration-300"
+                enter-from-class="transition-modal-enter-from opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enter-to-class="transition-modal-enter-to opacity-100 translate-y-0 sm:scale-100"
+                leave-active-class="transition-modal-leave-active ease-in duration-200"
+                leave-from-class="transition-modal-leave-from opacity-100 translate-y-0 sm:scale-100"
+                leave-to-class="transition-modal-leave-to opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
                 <div
                     v-show="show"
@@ -123,89 +113,166 @@ const maxWidthClass = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+.dialog {
+    margin: 0;
 
-    .dialog{
-        margin: 0;
-        min-height: 100%;
-        min-width: 100%;
+    min-height: 100%;
+    min-width: 100%;
+
+    z-index: 50;
+    overflow-y: auto;
+
+    background-color: transparent;
+
+    &::backdrop {
+        background-color: transparent;
+    }
+
+    .content {
+        padding: 1.5rem 1rem;
+
+        position: fixed;
+        inset: 0;
 
         z-index: 50;
         overflow-y: auto;
 
-        background-color: transparent;
-        &::backdrop{
-            background-color: transparent;
+        @media (min-width: 640px) {
+            padding-left: 0;
+            padding-right: 0;
         }
 
-        .animation{
+        .animation {
             position: fixed;
             inset: 0;
-            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+            .background {
+                position: absolute;
+                inset: 0;
+
+                background-color: #6b7280;
+                opacity: 75%;
+            }
         }
 
-        .background{
-            position: absolute;
-            inset: rgb(107 114 128);
-            opacity: 75%;
-        }
+        .message {
+            margin-bottom: 1.5rem;
 
-        .content{
-            position: fixed;
+            overflow: hidden;
 
-            inset: 0;
-            z-index: 50;
-            overflow-y: auto;
-            padding: 1.5rem 1rem;
+            border: 0.5rem;
+            background-color: #ffffff;
+
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
             @media (min-width: 640px) {
-                padding-left: 0;
-                padding-right: 0;
-            }
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
 
-            .message{
-                margin-bottom: 1.5rem;
-                overflow: hidden;
+                .sm {
+                    max-width: 24rem;
+                }
 
-                border: 0.5rem;
-                background-color: white;
+                .md {
+                    max-width: 28rem;
+                }
 
-                transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+                .lg {
+                    max-width: 32rem;
+                }
 
-                box-shadow: 0 20px 25px -5px rgb(0, 0, 0, 0.1), 0 8px 10px -6px rgb(0, 0, 0, 0.1);
+                .xl {
+                    max-width: 36rem;
+                }
 
-                @media (min-width: 640px) {
-                    margin-left: auto;
-                    margin-right: auto;
-                    width: 100%;
+                .xxl {
+                    max-width: 42rem;
                 }
             }
-
         }
     }
+}
+
+// Animation transition classes
+
+.transition-animation-enter-active {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-out
+    transition-duration: 0.3s;
+}
+
+.transition-animation-enter-from {
+    opacity: 0;
+}
+
+.transition-animation-enter-to {
+    opacity: 1;
+}
+
+.transition-animation-leave-active {
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-out
+    transition-duration: 0.2s;
+}
+
+.transition-animation-leave-from {
+    opacity: 1;
+}
+
+.transition-animation-leave-to {
+    opacity: 0;
+}
+
+// Modal transition classes
+
+.transition-modal-enter-active {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-in
+    transition-duration: 0.3s;
+}
+
+.transition-modal-enter-from {
+    opacity: 0;
+    translate: 0 1rem;
 
     @media (min-width: 640px) {
-
-        .sm {
-            max-width: 24rem;
-        }
-
-        .md{
-            max-width: 28rem;
-        }
-    
-        .lg{
-            max-width: 32rem;
-        }
-    
-        .xl{
-            max-width: 36rem;
-        }
-    
-        .xxl{
-            max-width: 42rem;
-        }
-
+        translate: 0 0;
+        scale: 95%;
     }
+}
 
-    
+.transition-modal-enter-to {
+    opacity: 1;
+    translate: 0 0;
+
+    @media (min-width: 640px) {
+        scale: 100%;
+    }
+}
+
+.transition-modal-leave-active {
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-out
+    transition-duration: 0.2s;
+}
+
+.transition-modal-leave-from {
+    opacity: 1;
+    translate: 0 0;
+
+    @media (min-width: 640px) {
+        scale: 100%;
+    }
+}
+
+.transition-modal-leave-to {
+    opacity: 0;
+    translate: 0 1rem;
+
+    @media (min-width: 640px) {
+        translate: 0 0;
+        scale: 95%;
+    }
+}
 </style>
