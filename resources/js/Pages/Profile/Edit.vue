@@ -89,8 +89,11 @@ defineProps({
         }
 
         .card{
-            background-color: white;
+            position: relative;
             padding: 1rem;
+            margin-top: 1rem;
+
+            background-color: white;
             box-shadow: 0 20px 25px -5px rgb(0, 0, 0, 0.1), 0 8px 10px -6px rgb(0, 0, 0, 0.1);
 
             @media (min-width: 640px) {
@@ -100,6 +103,10 @@ defineProps({
 
             .card-content{
                 max-width: 36rem;
+
+                &:last-of-type{
+                    max-width: fit-content;
+                }
             }
         }
 

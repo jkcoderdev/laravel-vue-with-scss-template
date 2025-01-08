@@ -39,40 +39,38 @@ const closeModal = () => {
 </script>
 
 <template>
-    <section class="space-y-6">
+    <section class="content">
         <header>
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2>
                 Delete Account
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="desc">
                 Once your account is deleted, all of its resources and data will
                 be permanently deleted. Before deleting your account, please
                 download any data or information that you wish to retain.
             </p>
         </header>
 
-        <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
+        <DangerButton @click="confirmUserDeletion" class="danger-btn">Delete Account</DangerButton>
 
         <Modal :show="confirmingUserDeletion" @close="closeModal">
-            <div class="p-6">
-                <h2
-                    class="text-lg font-medium text-gray-900"
-                >
+            <div class="modal">
+                <h2>
                     Are you sure you want to delete your account?
                 </h2>
 
-                <p class="mt-1 text-sm text-gray-600">
+                <p class="desc">
                     Once your account is deleted, all of its resources and data
                     will be permanently deleted. Please enter your password to
                     confirm you would like to permanently delete your account.
                 </p>
 
-                <div class="mt-6">
+                <div class="input">
                     <InputLabel
                         for="password"
                         value="Password"
-                        class="sr-only"
+                        class="label"
                     />
 
                     <TextInput
@@ -80,22 +78,22 @@ const closeModal = () => {
                         ref="passwordInput"
                         v-model="form.password"
                         type="password"
-                        class="mt-1 block w-3/4"
+                        class="text-input"
                         placeholder="Password"
                         @keyup.enter="deleteUser"
                     />
 
-                    <InputError :message="form.errors.password" class="mt-2" />
+                    <InputError :message="form.errors.password" class="input-error" />
                 </div>
 
-                <div class="mt-6 flex justify-end">
+                <div class="btns">
                     <SecondaryButton @click="closeModal">
                         Cancel
                     </SecondaryButton>
 
                     <DangerButton
-                        class="ms-3"
-                        :class="{ 'opacity-25': form.processing }"
+                        class="danger-btn"
+                        :class="{ 'opaque': form.processing }"
                         :disabled="form.processing"
                         @click="deleteUser"
                     >
@@ -106,3 +104,103 @@ const closeModal = () => {
         </Modal>
     </section>
 </template>
+
+<style lang="scss" scoped>
+
+    $semi-black: #111;
+    $gray: #333;
+    $ligt-gray: #666;
+    $indigo: #6366f1;
+
+    @mixin smalltext{
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    @mixin largetext{
+        line-height: 1.75rem;
+        font-weight: 500;
+    }
+
+    header{
+        h2{
+            @include largetext;
+
+            font-size: 1.125rem;
+            color: $gray;
+        }
+
+        .desc{
+            @include smalltext;  
+
+            margin-top: .25rem;
+            color: $ligt-gray;
+        }
+    }
+
+    .danger-btn{
+        margin-top: 1.5rem;
+    }
+
+    .content{
+        padding: 1.5rem;
+        max-width: min-content;
+        
+
+        h2{
+            @include largetext;
+            font-weight: 500;
+            color: $semi-black;
+        }
+
+        .modal{
+
+            padding: 1.5rem;
+
+            .input{
+                margin-top: 1.5rem;
+
+                .label{
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    padding: 0;
+                    margin: -1px;
+                    overflow: hidden;
+                    clip: rect(0, 0, 0, 0);
+                    white-space: nowrap;
+                    border-width: 0;
+                }
+
+                .text-input{
+                    margin-top: .25rem;
+                    display: block;
+                    width: 75%;
+                }
+        
+                .input-error{
+                    margin-top: .5rem;
+                }
+            }
+
+            
+    
+            .btns{
+                display: flex;
+                align-items: center;
+                margin-top: 1.5rem;
+    
+                .danger-btn{
+                    margin-inline-start: .75rem;
+    
+                    .opaque{
+                        opacity: 25% ;
+                    }
+                }
+            }
+
+        }
+       
+    }
+
+</style>

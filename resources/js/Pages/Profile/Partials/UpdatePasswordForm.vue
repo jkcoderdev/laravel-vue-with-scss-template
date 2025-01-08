@@ -36,17 +36,17 @@ const updatePassword = () => {
 <template>
     <section>
         <header>
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2 >
                 Update Password
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="desc">
                 Ensure your account is using a long, random password to stay
                 secure.
             </p>
         </header>
 
-        <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
+        <form @submit.prevent="updatePassword" class="form">
             <div>
                 <InputLabel for="current_password" value="Current Password" />
 
@@ -55,13 +55,13 @@ const updatePassword = () => {
                     ref="currentPasswordInput"
                     v-model="form.current_password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="text-input"
                     autocomplete="current-password"
                 />
 
                 <InputError
                     :message="form.errors.current_password"
-                    class="mt-2"
+                    class="input-error"
                 />
             </div>
 
@@ -73,11 +73,11 @@ const updatePassword = () => {
                     ref="passwordInput"
                     v-model="form.password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="text-input"
                     autocomplete="new-password"
                 />
 
-                <InputError :message="form.errors.password" class="mt-2" />
+                <InputError :message="form.errors.password" class="input-error" />
             </div>
 
             <div>
@@ -90,17 +90,17 @@ const updatePassword = () => {
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="text-input"
                     autocomplete="new-password"
                 />
 
                 <InputError
                     :message="form.errors.password_confirmation"
-                    class="mt-2"
+                    class="input-error"
                 />
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="btn">
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
 
                 <Transition
@@ -111,7 +111,7 @@ const updatePassword = () => {
                 >
                     <p
                         v-if="form.recentlySuccessful"
-                        class="text-sm text-gray-600"
+                        class="message"
                     >
                         Saved.
                     </p>
@@ -120,3 +120,66 @@ const updatePassword = () => {
         </form>
     </section>
 </template>
+
+<style lang="scss" scoped>
+    $semi-black: #111;
+    $gray: #333;
+    $ligt-gray: #666;
+    $indigo: #6366f1;
+
+    @mixin smalltext{
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    @mixin largetext{
+        line-height: 1.75rem;
+        font-weight: 500;
+    }
+
+    header{
+        h2{
+            @include largetext;
+
+            font-size: 1.125rem;
+            color: $gray;
+        }
+
+        .desc{
+            @include smalltext;  
+
+            margin-top: .25rem;
+            color: $ligt-gray;
+        }
+    }
+
+    form{
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+
+        .text-input{
+            margin-top: .25rem;
+            display: block;
+            width: 100%;
+        }
+
+        .input-error{
+            margin-top: .5rem;
+        }
+
+        .btn{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+
+            .message{
+                @include smalltext;
+
+                color: $ligt-gray;
+            }
+        }
+    }
+
+
+</style>

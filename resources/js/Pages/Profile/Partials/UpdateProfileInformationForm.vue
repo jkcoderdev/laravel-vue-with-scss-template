@@ -187,18 +187,22 @@ const form = useForm({
                 font-weight: 500;
                 color: rgb(0, 156, 0);
             }
+            
+        }
 
-            .btn{
-                display: grid;
-                place-items: center;
-                gap: 1rem;
+        .btn{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
 
-                .message{
-                    @include smalltext;
+            .message{
+                @include smalltext;
 
-                    color: $ligt-gray;
-                }
+                color: $ligt-gray;
             }
         }
+
+        
     }
 </style>
