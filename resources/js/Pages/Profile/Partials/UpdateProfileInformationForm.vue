@@ -25,18 +25,18 @@ const form = useForm({
 <template>
     <section>
         <header>
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2>
                 Profile Information
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="desc">
                 Update your account's profile information and email address.
             </p>
         </header>
 
         <form
             @submit.prevent="form.patch(route('profile.update'))"
-            class="mt-6 space-y-6"
+            class="form"
         >
             <div>
                 <InputLabel for="name" value="Name" />
@@ -44,14 +44,14 @@ const form = useForm({
                 <TextInput
                     id="name"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="text-input"
                     v-model="form.name"
                     required
                     autofocus
                     autocomplete="name"
                 />
 
-                <InputError class="mt-2" :message="form.errors.name" />
+                <InputError class="input-error" :message="form.errors.name" />
             </div>
 
             <div>
@@ -60,23 +60,23 @@ const form = useForm({
                 <TextInput
                     id="email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="text-input"
                     v-model="form.email"
                     required
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="input-error" :message="form.errors.email" />
             </div>
 
             <div v-if="mustVerifyEmail && user.email_verified_at === null">
-                <p class="mt-2 text-sm text-gray-800">
+                <p class="email">
                     Your email address is unverified.
                     <Link
                         :href="route('verification.send')"
                         method="post"
                         as="button"
-                        class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        class="link"
                     >
                         Click here to re-send the verification email.
                     </Link>
@@ -84,13 +84,13 @@ const form = useForm({
 
                 <div
                     v-show="status === 'verification-link-sent'"
-                    class="mt-2 text-sm font-medium text-green-600"
+                    class="message"
                 >
                     A new verification link has been sent to your email address.
                 </div>
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="btn">
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
 
                 <Transition
@@ -101,7 +101,7 @@ const form = useForm({
                 >
                     <p
                         v-if="form.recentlySuccessful"
-                        class="text-sm text-gray-600"
+                        class="message"
                     >
                         Saved.
                     </p>
@@ -110,3 +110,95 @@ const form = useForm({
         </form>
     </section>
 </template>
+
+<style lang="scss" scoped>
+
+    $semi-black: #111;
+    $gray: #333;
+    $ligt-gray: #666;
+    $indigo: #6366f1;
+
+    @mixin smalltext{
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    @mixin largetext{
+        line-height: 1.75rem;
+        font-weight: 500;
+    }
+
+    header{
+        h2{
+            @include largetext;
+
+            font-size: 1.125rem;
+            color: $gray;
+        }
+
+        .desc{
+            @include smalltext;  
+
+            margin-top: .25rem;
+            color: $ligt-gray;
+        }
+    }
+
+    form{
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+
+        .text-input{
+            margin-top: .25rem;
+            display: block;
+            width: 100%;
+        }
+
+        .input-error{
+            margin-top: .5rem;
+        }
+
+        .verify-email{
+            @include smalltext;
+
+            margin-top: .5rem;
+            color: $gray;
+
+            .link{
+                border-radius: 0.375rem;
+                @include smalltext;
+                color: $ligt-gray;
+                text-decoration: underline;
+                
+                &:hover{
+                    color: $semi-black;
+                }
+
+                &:focus{
+                    outline: none;
+                    box-shadow: 0 0 0 2px $indigo, 0 0 0 4px rgba(255, 255, 255, 1);
+                }
+            }
+
+            .message{
+                @include smalltext;
+
+                margin-top: .5rem;
+                font-weight: 500;
+                color: rgb(0, 156, 0);
+            }
+
+            .btn{
+                display: grid;
+                place-items: center;
+                gap: 1rem;
+
+                .message{
+                    @include smalltext;
+
+                    color: $ligt-gray;
+                }
+            }
+        }
+    }
+</style>
