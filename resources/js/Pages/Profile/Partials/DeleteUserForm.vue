@@ -52,7 +52,7 @@ const closeModal = () => {
             </p>
         </header>
 
-        <DangerButton @click="confirmUserDeletion" class="danger-btn">Delete Account</DangerButton>
+        <DangerButton @click="confirmUserDeletion" class="btn">Delete Account</DangerButton>
 
         <Modal :show="confirmingUserDeletion" @close="closeModal">
             <div class="modal">
@@ -138,7 +138,7 @@ const closeModal = () => {
         }
     }
 
-    .danger-btn{
+    .btn{
         margin-top: 1.5rem;
     }
 
