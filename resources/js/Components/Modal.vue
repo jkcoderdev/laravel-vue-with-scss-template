@@ -160,6 +160,7 @@ const maxWidthClass = computed(() => props.maxWidth);
         .message {
             margin-bottom: 1.5rem;
 
+            position: relative;
             overflow: hidden;
 
             border: 0.5rem;
