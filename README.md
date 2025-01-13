@@ -1,9 +1,3 @@
-Files to translate from Tailwind CSS:
-* SecondaryButton.vue
-* Modal.vue
+# Laravel Breeze Template with SASS
 
-Tailwind CSS Playground
-https://play.tailwindcss.com/
-
-SASS Tutorial
-https://www.w3schools.com/sass/
+This is just a modified Laravel Breeze template with Intertia and Vue 3. The only change is that instead of Tailwind CSS it uses SASS.
