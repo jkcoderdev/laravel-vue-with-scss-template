@@ -11,7 +11,7 @@ import { Head } from '@inertiajs/vue3';
             <h2>Dashboard</h2>
         </template>
 
-        <div class="content py-12">
+        <div class="content">
             <div class="section">
                 <div class="text">
                     You're logged in!
