@@ -39,13 +39,13 @@ const closeModal = () => {
 </script>
 
 <template>
-    <section class="content">
+    <section>
         <header>
             <h2>
                 Delete Account
             </h2>
 
-            <p class="desc">
+            <p class="description">
                 Once your account is deleted, all of its resources and data will
                 be permanently deleted. Before deleting your account, please
                 download any data or information that you wish to retain.
@@ -60,7 +60,7 @@ const closeModal = () => {
                     Are you sure you want to delete your account?
                 </h2>
 
-                <p class="desc">
+                <p class="description">
                     Once your account is deleted, all of its resources and data
                     will be permanently deleted. Please enter your password to
                     confirm you would like to permanently delete your account.
@@ -106,101 +106,99 @@ const closeModal = () => {
 </template>
 
 <style lang="scss" scoped>
+$semi-black: #111;
+$gray: #333;
+$ligt-gray: #666;
+$indigo: #6366f1;
 
-    $semi-black: #111;
-    $gray: #333;
-    $ligt-gray: #666;
-    $indigo: #6366f1;
+@mixin smalltext{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
 
-    @mixin smalltext{
-        font-size: 0.875rem;
-        line-height: 1.25rem;
+@mixin largetext{
+    line-height: 1.75rem;
+    font-weight: 500;
+}
+
+header{
+    h2{
+        @include largetext;
+
+        font-size: 1.125rem;
+        color: $gray;
     }
 
-    @mixin largetext{
-        line-height: 1.75rem;
+    .description{
+        @include smalltext;  
+
+        margin-top: .25rem;
+        color: $ligt-gray;
+    }
+}
+
+.btn{
+    margin-top: 1.5rem;
+}
+
+section{
+    padding: 1.5rem;
+    max-width: min-content;
+    
+
+    h2{
+        @include largetext;
         font-weight: 500;
+        color: $semi-black;
     }
 
-    header{
-        h2{
-            @include largetext;
+    .modal{
 
-            font-size: 1.125rem;
-            color: $gray;
-        }
-
-        .desc{
-            @include smalltext;  
-
-            margin-top: .25rem;
-            color: $ligt-gray;
-        }
-    }
-
-    .btn{
-        margin-top: 1.5rem;
-    }
-
-    .content{
         padding: 1.5rem;
-        max-width: min-content;
-        
 
-        h2{
-            @include largetext;
-            font-weight: 500;
-            color: $semi-black;
-        }
+        .input{
+            margin-top: 1.5rem;
 
-        .modal{
-
-            padding: 1.5rem;
-
-            .input{
-                margin-top: 1.5rem;
-
-                .label{
-                    position: absolute;
-                    width: 1px;
-                    height: 1px;
-                    padding: 0;
-                    margin: -1px;
-                    overflow: hidden;
-                    clip: rect(0, 0, 0, 0);
-                    white-space: nowrap;
-                    border-width: 0;
-                }
-
-                .text-input{
-                    margin-top: .25rem;
-                    display: block;
-                    width: 75%;
-                }
-        
-                .input-error{
-                    margin-top: .5rem;
-                }
+            .label{
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border-width: 0;
             }
 
-            
+            .text-input{
+                margin-top: .25rem;
+                display: block;
+                width: 75%;
+            }
     
-            .btns{
-                display: flex;
-                align-items: center;
-                margin-top: 1.5rem;
-    
-                .danger-btn{
-                    margin-inline-start: .75rem;
-    
-                    .opaque{
-                        opacity: 25% ;
-                    }
+            .input-error{
+                margin-top: .5rem;
+            }
+        }
+
+        
+
+        .btns{
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+
+            .danger-btn{
+                margin-inline-start: .75rem;
+
+                .opaque{
+                    opacity: 25% ;
                 }
             }
-
         }
-       
+
     }
-
+    
+}
 </style>
