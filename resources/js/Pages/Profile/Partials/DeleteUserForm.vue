@@ -40,33 +40,36 @@ const closeModal = () => {
 
 <template>
     <section>
-        <header>
+        <header class="text-box">
             <h2>
                 Delete Account
             </h2>
 
-            <p class="description">
+            <p>
                 Once your account is deleted, all of its resources and data will
                 be permanently deleted. Before deleting your account, please
                 download any data or information that you wish to retain.
             </p>
         </header>
 
-        <DangerButton @click="confirmUserDeletion" class="btn">Delete Account</DangerButton>
+        <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
 
         <Modal :show="confirmingUserDeletion" @close="closeModal">
             <div class="modal">
-                <h2>
-                    Are you sure you want to delete your account?
-                </h2>
+                <div class="text-box">
+                    <h2>
+                        Are you sure you want to delete your account?
+                    </h2>
 
-                <p class="description">
-                    Once your account is deleted, all of its resources and data
-                    will be permanently deleted. Please enter your password to
-                    confirm you would like to permanently delete your account.
-                </p>
+                    <p>
+                        Once your account is deleted, all of its resources and data
+                        will be permanently deleted. Please enter your password to
+                        confirm you would like to permanently delete your account.
+                    </p>
+                </div>
+                
 
-                <div class="input">
+                <div>
                     <InputLabel
                         for="password"
                         value="Password"
@@ -78,22 +81,21 @@ const closeModal = () => {
                         ref="passwordInput"
                         v-model="form.password"
                         type="password"
-                        class="text-input"
+                        class="input"
                         placeholder="Password"
                         @keyup.enter="deleteUser"
                     />
 
-                    <InputError :message="form.errors.password" class="input-error" />
+                    <InputError :message="form.errors.password" class="error" />
                 </div>
 
-                <div class="btns">
+                <div class="action-buttons">
                     <SecondaryButton @click="closeModal">
                         Cancel
                     </SecondaryButton>
 
                     <DangerButton
                         class="danger-btn"
-                        :class="{ 'opaque': form.processing }"
                         :disabled="form.processing"
                         @click="deleteUser"
                     >
@@ -106,99 +108,69 @@ const closeModal = () => {
 </template>
 
 <style lang="scss" scoped>
-$semi-black: #111;
-$gray: #333;
-$ligt-gray: #666;
-$indigo: #6366f1;
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
 
-@mixin smalltext{
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-}
-
-@mixin largetext{
-    line-height: 1.75rem;
-    font-weight: 500;
-}
-
-header{
-    h2{
-        @include largetext;
-
-        font-size: 1.125rem;
-        color: $gray;
-    }
-
-    .description{
-        @include smalltext;  
-
-        margin-top: .25rem;
-        color: $ligt-gray;
-    }
-}
-
-.btn{
-    margin-top: 1.5rem;
-}
-
-section{
-    padding: 1.5rem;
-    max-width: min-content;
-    
-
-    h2{
-        @include largetext;
-        font-weight: 500;
-        color: $semi-black;
-    }
-
-    .modal{
-
-        padding: 1.5rem;
-
-        .input{
-            margin-top: 1.5rem;
-
-            .label{
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border-width: 0;
-            }
-
-            .text-input{
-                margin-top: .25rem;
-                display: block;
-                width: 75%;
-            }
-    
-            .input-error{
-                margin-top: .5rem;
-            }
+    .text-box {
+        h2 {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+            font-weight: 500;
+            color: #111827;
         }
 
-        
+        p {
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: #4b5563;
+        }
+    }
 
-        .btns{
+    .modal {
+        padding: 1.5rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .input {
+            width: 75%;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .error {
+            margin-top: 0.5rem;
+        }
+
+        .action-buttons {
             display: flex;
-            align-items: center;
-            margin-top: 1.5rem;
+            justify-content: flex-end;
 
-            .danger-btn{
-                margin-inline-start: .75rem;
+            .danger-btn {
+                margin-inline-start: 0.75rem;
 
-                .opaque{
-                    opacity: 25% ;
+                &:disabled {
+                    opacity: 0.25;
                 }
             }
         }
-
     }
-    
 }
 </style>
