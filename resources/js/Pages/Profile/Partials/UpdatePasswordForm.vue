@@ -35,12 +35,12 @@ const updatePassword = () => {
 
 <template>
     <section>
-        <header>
-            <h2 >
+        <header class="text-box">
+            <h2>
                 Update Password
             </h2>
 
-            <p class="desc">
+            <p>
                 Ensure your account is using a long, random password to stay
                 secure.
             </p>
@@ -55,13 +55,13 @@ const updatePassword = () => {
                     ref="currentPasswordInput"
                     v-model="form.current_password"
                     type="password"
-                    class="text-input"
+                    class="input"
                     autocomplete="current-password"
                 />
 
                 <InputError
                     :message="form.errors.current_password"
-                    class="input-error"
+                    class="error"
                 />
             </div>
 
@@ -73,11 +73,11 @@ const updatePassword = () => {
                     ref="passwordInput"
                     v-model="form.password"
                     type="password"
-                    class="text-input"
+                    class="input"
                     autocomplete="new-password"
                 />
 
-                <InputError :message="form.errors.password" class="input-error" />
+                <InputError :message="form.errors.password" class="error" />
             </div>
 
             <div>
@@ -90,24 +90,24 @@ const updatePassword = () => {
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
-                    class="text-input"
+                    class="input"
                     autocomplete="new-password"
                 />
 
                 <InputError
                     :message="form.errors.password_confirmation"
-                    class="input-error"
+                    class="error"
                 />
             </div>
 
-            <div class="btn">
+            <div class="submit-box">
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
 
                 <Transition
-                    enter-active-class="transition ease-in-out"
-                    enter-from-class="opacity-0"
-                    leave-active-class="transition ease-in-out"
-                    leave-to-class="opacity-0"
+                    enter-active-class="transition-enter-active transition ease-in-out"
+                    enter-from-class="transition-enter-from opacity-0"
+                    leave-active-class="transition-leave-active transition ease-in-out"
+                    leave-to-class="transition-leave-to opacity-0"
                 >
                     <p
                         v-if="form.recentlySuccessful"
@@ -122,64 +122,63 @@ const updatePassword = () => {
 </template>
 
 <style lang="scss" scoped>
-    $semi-black: #111;
-    $gray: #333;
-    $ligt-gray: #666;
-    $indigo: #6366f1;
-
-    @mixin smalltext{
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-    }
-
-    @mixin largetext{
-        line-height: 1.75rem;
-        font-weight: 500;
-    }
-
-    header{
-        h2{
-            @include largetext;
-
+section {
+    .text-box {
+        h2 {
             font-size: 1.125rem;
-            color: $gray;
+            line-height: 1.75rem;
+            font-weight: 500;
+            color: #111827;
         }
 
-        .desc{
-            @include smalltext;  
-
-            margin-top: .25rem;
-            color: $ligt-gray;
+        p {
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: #4b5563;
         }
     }
 
-    form{
+    .form {
         margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
 
-        .text-input{
-            margin-top: .25rem;
-            display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .input {
+            margin-top: 0.25rem;
             width: 100%;
+            display: block;
         }
 
-        .input-error{
-            margin-top: .5rem;
+        .error {
+            margin-top: 0.5rem;
         }
 
-        .btn{
+        .submit-box {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-top: 1rem;
 
-            .message{
-                @include smalltext;
+            .message {
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                color: #4b5563;
+            }
 
-                color: $ligt-gray;
+            .transition-enter-active,
+            .transition-leave-active {
+                transition-property: color;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 0.15s;
+            }
+
+            .transition-enter-from,
+            .transition-leave-to {
+                opacity: 0;
             }
         }
     }
-
-
+}
 </style>
