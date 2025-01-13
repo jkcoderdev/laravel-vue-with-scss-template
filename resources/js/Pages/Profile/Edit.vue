@@ -20,98 +20,73 @@ defineProps({
 
     <AuthenticatedLayout>
         <template #header class="header">
-            <h2>
-                Profile
-            </h2>
+            <h2>Profile</h2>
         </template>
 
-        <div class="page">
-            <div class="content">
-                <div
-                    class="card"
-                >
-                    <UpdateProfileInformationForm
-                        :must-verify-email="mustVerifyEmail"
-                        :status="status"
-                        class="card-content"
-                    />
-                </div>
+        <div class="content">
+            <div class="section">
+                <UpdateProfileInformationForm
+                    :must-verify-email="mustVerifyEmail"
+                    :status="status"
+                />
+            </div>
 
-                <div
-                    class="card"
-                >
-                    <UpdatePasswordForm class="card-content" />
-                </div>
+            <div class="section">
+                <UpdatePasswordForm />
+            </div>
 
-                <div
-                    class="card"
-                >
-                    <DeleteUserForm class="card-content" />
-                </div>
+            <div class="section">
+                <DeleteUserForm />
             </div>
         </div>
     </AuthenticatedLayout>
 </template>
 
 <style lang="scss" scoped>
-.page{
-    padding: 3rem;
+.header h2 {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    font-weight: 600;
+    color: #1f2937;
+}
 
-    .header{
+.content {
+    max-width: 80rem;
 
-        h2{
-            font-size: 1.25rem;
-            line-height: 1.75rem;
-            font-weight: 600;
-            line-height: 1.25rem;
-            color: #333;
-        }
+    padding: 3rem 0;
+    margin: 0 auto;
 
-        
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 
-    .content{
-
-        margin: 1.5rem auto;
+    @media (min-width: 640px) {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
+    }
 
-        max-width: 80rem;
+    @media (min-width: 1024px) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 
+    .section {
+        overflow: hidden;
+
+        padding: 1rem;
+
+        background-color: #ffffff;
+
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+        
         @media (min-width: 640px) {
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
+            padding: 2rem;
+            border-radius: 0.5rem;
         }
 
-        @media (min-width: 1024px) {
-            padding-left: 2rem;
-            padding-right: 2rem;
+        & > * {
+            max-width: 36rem;
         }
-
-        .card{
-            position: relative;
-            padding: 1rem;
-            margin-top: 1rem;
-
-            background-color: white;
-            box-shadow: 0 20px 25px -5px rgb(0, 0, 0, 0.1), 0 8px 10px -6px rgb(0, 0, 0, 0.1);
-
-            @media (min-width: 640px) {
-                border-radius: 0.5rem;
-                padding: 2rem;
-            }
-
-            .card-content{
-                max-width: 36rem;
-
-                &:last-of-type{
-                    max-width: fit-content;
-                }
-            }
-        }
-
-    } 
-
-    
+    }
 }
 </style>
