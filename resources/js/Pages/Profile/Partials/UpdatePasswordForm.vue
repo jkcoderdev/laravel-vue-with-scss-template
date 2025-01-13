@@ -104,10 +104,10 @@ const updatePassword = () => {
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
 
                 <Transition
-                    enter-active-class="transition-enter-active transition ease-in-out"
-                    enter-from-class="transition-enter-from opacity-0"
-                    leave-active-class="transition-leave-active transition ease-in-out"
-                    leave-to-class="transition-leave-to opacity-0"
+                    enter-active-class="transition-enter-active"
+                    enter-from-class="transition-enter-from"
+                    leave-active-class="transition-leave-active"
+                    leave-to-class="transition-leave-to"
                 >
                     <p
                         v-if="form.recentlySuccessful"
